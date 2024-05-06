@@ -1,0 +1,21 @@
+<div class="container mx-auto">
+    <h2 class="text-2xl font-bold mb-4">Manage Parking Working Hours</h2>
+  
+    <!-- Form for adding a new slot -->
+    <form (ngSubmit)="onUpdate()" class="mb-8">
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="startTime" class="block">Start Time:</label>
+          <input type="time" id="startTime" [(ngModel)]="parkingHours.start_time" name="startTime" class="form-input w-full p-2 border rounded-md" required>
+        </div>
+        <div>
+          <label for="endTime" class="block">End Time:</label>
+          <input type="time" id="endTime" [(ngModel)]="parkingHours.end_time" name="endTime" class="form-input w-full p-2 border rounded-md" required>
+        </div>
+      </div>
+  
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Update Parking Hours</button>
+    </form>
+  
+  </div>
+  

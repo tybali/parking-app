@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  slot: one
+  start_time: 2024-05-05 18:06:14
+  end_time: 2024-05-05 18:06:14
+  checked_in: false
+  checked_out: false
+
+two:
+  user: two
+  slot: two
+  start_time: 2024-05-05 18:06:14
+  end_time: 2024-05-05 18:06:14
+  checked_in: false
+  checked_out: false

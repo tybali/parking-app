@@ -1,0 +1,53 @@
+<div class="container mx-auto bg-transparent">
+    <nav *ngIf="!isLoginRoute()" class="mb-4 bg-white shadow-lg rounded-md p-4">
+        <ul class="flex space-x-4">
+
+        <li class="group">
+            <a
+                routerLink="/parking/reserve"
+                routerLinkActive="active"
+                class="text-gray-700 group-hover:text-indigo-600"
+            >
+                 Reserve Parking
+                <span
+                    class="block h-1 bg-indigo-600 group-hover:bg-indigo-400 transition-transform transform scale-x-0 group-hover:scale-x-100"
+                ></span>
+            </a>
+        </li>
+
+        <li class="group">
+                <a
+                    routerLink="/parking/reservations"
+                    routerLinkActive="active"
+                    class="text-gray-700 group-hover:text-indigo-600"
+                >
+                    My Reservations
+                    <span
+                        class="block h-1 bg-indigo-600 group-hover:bg-indigo-400 transition-transform transform scale-x-0 group-hover:scale-x-100"
+                    ></span>
+                </a>
+            </li>
+        
+            <li class="group">
+                <a
+                    routerLink="#"
+                    (click)="onLogout()"
+                    routerLinkActive="active"
+                    class="text-gray-700 group-hover:text-indigo-600"
+                >
+                    Logout
+                    <span
+                        class="block h-1 bg-indigo-600 group-hover:bg-indigo-400 transition-transform transform scale-x-0 group-hover:scale-x-100"
+                    ></span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    
+
+  <!-- Router outlet to render routed components -->
+  <div class="main-content">
+      <router-outlet></router-outlet>
+  </div>
+</div>

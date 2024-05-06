@@ -1,0 +1,103 @@
+<div class="container mx-auto">
+    <h2 class="text-2xl font-bold mb-4">Manage Slots</h2>
+  
+    <!-- Form for adding a new slot -->
+    <form (ngSubmit)="addSlot()" class="mb-8">
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="startTime" class="block">Start Time:</label>
+          <input type="time" id="start_time" [(ngModel)]="newSlot.start_time" name="start_time" class="form-input w-full p-2 border rounded-md" required>
+        </div>
+        <div>
+          <label for="endTime" class="block">End Time:</label>
+          <input type="time" id="end_time" [(ngModel)]="newSlot.end_time" name="end_time" class="form-input w-full p-2 border rounded-md" required>
+        </div>
+      </div>
+  
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        
+        <div>
+          <label for="price" class="block">Price:</label>
+          <input type="number" id="price" [(ngModel)]="newSlot.price" name="price" class="form-input w-full p-2 border rounded-md" required>
+        </div>
+        <div>
+          <label for="car_type" class="block">Car Type:</label>
+          <select id="car_type" [(ngModel)]="newSlot.car_type" name="car_type" class="form-select w-full p-2 border rounded-md">
+            <option value="">All</option>
+            <option value="sedan">Sedan</option>
+            <option value="suv">SUV</option>
+            <option value="truck">Truck</option>
+            <option value="van">Van</option>
+            <option value="motorcycle">Motorcycle</option>
+            <option value="ev">EV</option>
+          </select>
+        </div>
+        
+        
+      </div>
+  
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="cancellation_time_frame" class="block">Cancellation Policy (How Many Hours Before Reservation):</label>
+          <input type="number" id="cancellation_time_frame" [(ngModel)]="newSlot.cancellation_time_frame" name="cancellation_time_frame" class="form-input w-full p-2 border rounded-md">
+        </div>
+
+        <div>
+          <label for="cancellation_charges" class="block">Cancellation Charges:</label>
+          <input type="number" id="cancellation_charges" [(ngModel)]="newSlot.cancellation_charges" name="cancellation_charges" class="form-input w-full p-2 border rounded-md">
+        </div>
+
+        
+      </div>
+
+      <div class="grid grid-cols-4 gap-4 mb-4">
+        <div class="flex gap-2 self-center items-center">
+          <label for="disabled_people_only" class="block">Disabled People Only:</label>
+          <input type="checkbox" id="disabled_people_only" [(ngModel)]="newSlot.disabled_people_only" name="disabled_people_only" class="form-checkbox h-5 w-5">
+        </div>
+        <div class="flex gap-2 self-center items-center">
+          <label for="has_shade" class="block">Has Shade:</label>
+          <input type="checkbox" id="has_shade" [(ngModel)]="newSlot.has_shade" name="has_shade" class="form-checkbox h-5 w-5">
+        </div>
+        <div class="flex gap-2 self-center items-center">
+          <label for="availability" class="block">Availability:</label>
+          <input type="checkbox" id="availability" [(ngModel)]="newSlot.availability" name="availability" class="form-checkbox h-5 w-5">
+        </div>
+
+      </div>
+  
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Add Slot</button>
+    </form>
+  
+    <!-- List of existing slots -->
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="p-2 border">Start Time</th>
+          <th class="p-2 border">End Time</th>
+          <th class="p-2 border">Features</th>
+          <th class="p-2 border">Price</th>
+          <th class="p-2 border">Cancellation Time (Before Hours)</th>
+          <th class="p-2 border">Cancellation Charges</th>
+          <th class="p-2 border">Availability</th>
+          <th class="p-2 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let slot of slots">
+          <td class="p-2 border ">{{ slot.start_time | date: 'shortTime' }}</td>
+          <td class="p-2 border ">{{ slot.end_time | date: 'shortTime' }}</td>
+          <td class="p-2 border ">{{ slot.car_type? slot.car_type+',' : '' }}{{ slot.disabled_people_only? 'Only Disabled People': 'For All People' }},{{ slot.has_shade? 'Has Shades': 'No Shades' }} {{ slot.other_features }}</td>
+          <td class="p-2 border ">{{ slot.price }}</td>
+          <td class="p-2 border ">{{ slot.cancellation_time_frame }}</td>
+          <td class="p-2 border ">{{ slot.cancellation_charges }}</td>
+          
+          <td class="p-2 border ">{{ slot.availability ? 'Yes' : 'No' }}</td>
+          <td class="p-2 border ">
+            <button (click)="deleteSlot(slot.id)" class="bg-red-500 text-white px-2 py-1 rounded-md">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2024-05-05 18:05:34
+  end_time: 2024-05-05 18:05:34
+  availability: false
+  features: 
+  price: 9.99
+  cancellation_time_frame: 1
+  cancellation_charges: 9.99
+  car_type: MyString
+  disabled_people_only: false
+  has_shade: false
+
+two:
+  start_time: 2024-05-05 18:05:34
+  end_time: 2024-05-05 18:05:34
+  availability: false
+  features: 
+  price: 9.99
+  cancellation_time_frame: 1
+  cancellation_charges: 9.99
+  car_type: MyString
+  disabled_people_only: false
+  has_shade: false

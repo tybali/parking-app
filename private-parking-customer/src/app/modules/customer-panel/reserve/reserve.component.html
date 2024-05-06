@@ -1,0 +1,95 @@
+<div class="container mx-auto">
+    <h2 class="text-2xl font-bold mb-4">Reserve Parking</h2>
+  
+    <!-- Form for adding a new reservation -->
+    <form (ngSubmit)="searchSlots()" class="mb-8">  
+  
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="start_time" class="block">Start Time:</label>
+          <input
+            type="datetime-local"
+            id="start_time"
+            [(ngModel)]="newReservation.start_time"
+            name="startTime"
+            class="form-input w-full p-2 border rounded-md"
+            required
+          />
+        </div>
+        <div>
+          <label for="hours" class="block">Number of Hours:</label>
+          <input
+            type="number"
+            id="hours"
+            [(ngModel)]="newReservation.hours"
+            name="endTime"
+            class="form-input w-full p-2 border rounded-md"
+            required
+          />
+        </div>
+      </div>
+
+
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="car_type" class="block">Car Type:</label>
+          <select id="car_type" [(ngModel)]="newReservation.car_type" name="car_type" class="form-select w-full p-2 border rounded-md">
+            <option value="">All</option>
+            <option value="sedan">Sedan</option>
+            <option value="suv">SUV</option>
+            <option value="truck">Truck</option>
+            <option value="van">Van</option>
+            <option value="motorcycle">Motorcycle</option>
+            <option value="ev">EV</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mt-6">
+
+          <div class="flex gap-2 self-center items-center">
+            <label for="disabled_people_only" class="block">Disabled People Only:</label>
+            <input type="checkbox" id="disabled_people_only" [(ngModel)]="newReservation.disabled_people_only" name="disabled_people_only" class="form-checkbox h-5 w-5">
+          </div>
+          <div class="flex gap-2 self-center items-center">
+            <label for="has_shade" class="block">Has Shade:</label>
+            <input type="checkbox" id="has_shade" [(ngModel)]="newReservation.has_shade" name="has_shade" class="form-checkbox h-5 w-5">
+          </div>
+        </div>
+      </div>
+  
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Search Slots</button>
+    </form>
+  
+    <!-- List of existing reservations -->
+    <table *ngIf="slots.length>0" class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="p-2 border">Start Time</th>
+          <th class="p-2 border">End Time</th>
+          <th class="p-2 border">Features</th>
+          <th class="p-2 border">Price</th>
+          <th class="p-2 border">Cancellation Time (Before Hours)</th>
+          <th class="p-2 border">Cancellation Charges</th>
+          <th class="p-2 border">Availability</th>
+          <th class="p-2 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let slot of slots">
+          <td class="p-2 border ">{{ slot.start_time | date: 'shortTime' }}</td>
+          <td class="p-2 border ">{{ slot.end_time | date: 'shortTime' }}</td>
+          <td class="p-2 border ">{{ slot.car_type? slot.car_type+',' : '' }}{{ slot.disabled_people_only? 'Only Disabled People': 'For All People' }},{{ slot.has_shade? 'Has Shades': 'No Shades' }} {{ slot.other_features }}</td>
+          <td class="p-2 border ">{{ slot.price }}</td>
+          <td class="p-2 border ">{{ slot.cancellation_time_frame }}</td>
+          <td class="p-2 border ">{{ slot.cancellation_charges }}</td>
+          
+          <td class="p-2 border ">{{ slot.availability ? 'Yes' : 'No' }}</td>
+          <td class="p-2 border ">
+            <button (click)="reserve(slot.id)" class="bg-green-500 text-white px-2 py-1 rounded-md">Reserve this slot</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  
