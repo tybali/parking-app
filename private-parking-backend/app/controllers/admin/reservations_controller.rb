@@ -8,7 +8,7 @@ class Admin::ReservationsController < ApplicationController
     end
 
     def cancel
-      reservation = current_user.reservations.find_by(id: params[:id])
+      reservation = Reservation.find_by(id: params[:id])
     
       if reservation
         if reservation.cancelled?
