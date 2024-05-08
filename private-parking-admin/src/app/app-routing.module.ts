@@ -8,7 +8,7 @@ import { AdminPanelRoutingModule } from './modules/admin-panel/admin-panel-routi
 import { authGuard } from './gaurds/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login',  pathMatch: 'full' }, // Home page route
+  { path: '', redirectTo: '/manage/slots',  pathMatch: 'full' }, // Home page route
   { path: 'login', component: LoginComponent }, // Login page route
   {
     path: 'manage',
